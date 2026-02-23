@@ -17,7 +17,7 @@ spring:
   # JPA Configuration
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: false
     properties:
       hibernate:
@@ -50,10 +50,10 @@ spring:
 
   # Email Configuration
   mail:
-    host: ${SMTP_HOST:smtp.gmail.com}
-    port: ${SMTP_PORT:587}
-    username: ${SMTP_USERNAME:honuvorrosemary@gmail.com}
-    password: ${SMTP_PASSWORD:biivqfkbxomqezti}
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
     protocol: smtp
     properties:
       mail:
