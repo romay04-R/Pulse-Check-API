@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Monitor Alert - Device Recovered</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 30px 40px; text-align: center; }
+        .header h1 { margin: 0; font-size: 28px; font-weight: 600; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+        .success-icon { font-size: 48px; margin-bottom: 20px; }
+        .content { padding: 40px; }
+        .success-box { background-color: #d4edda; border-left: 4px solid #28a745; border-radius: 4px; padding: 20px; margin: 20px 0; }
+        .success-title { color: #155724; font-size: 18px; font-weight: 600; margin: 0 0 10px 0; }
+        .footer { background-color: #f8f9fa; padding: 20px 40px; text-align: center; border-top: 1px solid #e9ecef; }
+        .footer p { margin: 0; color: #6c757d; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <div class='success-icon'>✅</div>
+            <h1>Monitor Recovered</h1>
+        </div>
+        <div class='content'>
+            <div class='success-box'>
+                <div class='success-title'>✅ GOOD NEWS</div>
+                <p>The device monitor has successfully checked in and is now operating normally.</p>
+            </div>
+            <p><strong>Device ID:</strong> {{deviceId}}</p>
+            <p><strong>Monitor ID:</strong> {{monitorId}}</p>
+            <p><strong>Recovery Time:</strong> {{heartbeatTime}}</p>
+        </div>
+        <div class='footer'>
+            <p><strong>CritMon Pulse Check System</strong></p>
+            <p>This is an automated notification. Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

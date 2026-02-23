@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Monitor Alert - Device Expired</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .alert-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .alert-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .alert-title {
+            color: #856404;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .info-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #6c757d;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 16px;
+            color: #495057;
+            word-break: break-all;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 40px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <div class='alert-icon'>⚠️</div>
+            <h1>Monitor Expired</h1>
+        </div>
+        <div class='content'>
+            <div class='alert-box'>
+                <div class='alert-title'>⚠️ CRITICAL ALERT</div>
+                <p>A device monitor has failed to check in within the expected time window. This may indicate a system failure or network issue that requires immediate attention.</p>
+            </div>
+            <div class='info-grid'>
+                <div class='info-item'>
+                    <div class='info-label'>Device ID</div>
+                    <div class='info-value'>{{deviceId}}</div>
+                </div>
+                <div class='info-item'>
+                    <div class='info-label'>Monitor ID</div>
+                    <div class='info-value'>{{monitorId}}</div>
+                </div>
+                <div class='info-item'>
+                    <div class='info-label'>Last Heartbeat</div>
+                    <div class='info-value'>{{lastHeartbeat}}</div>
+                </div>
+                <div class='info-item'>
+                    <div class='info-label'>Expected Before</div>
+                    <div class='info-value'>{{expiresAt}}</div>
+                </div>
+            </div>
+            <div style='text-align: center; margin-top: 30px;'>
+                <a href='#' class='action-button'>View Monitor Dashboard</a>
+            </div>
+        </div>
+        <div class='footer'>
+            <p><strong>CritMon Pulse Check System</strong></p>
+            <p>This is an automated alert. Please do not reply to this email.</p>
+            <p>If you believe this is a false alarm, please check your device connectivity.</p>
+        </div>
+    </div>
+</body>
+</html>
