@@ -2,33 +2,6 @@
 
 A robust Dead Man's Switch API for monitoring critical infrastructure devices. Built with Spring Boot and PostgreSQL.
 
-## 🏗️ Architecture Diagram
-
-```mermaid
-graph TD
-    A[Device] -->|POST /monitors| B[Monitor Controller]
-    A -->|POST /monitors/{id}/heartbeat| B
-    A -->|POST /monitors/{id}/pause| B
-    A -->|POST /monitors/{id}/resume| B
-    
-    B --> C[Monitor Service]
-    C --> D[Monitor Repository]
-    C --> E[Cache Layer]
-    
-    F[Monitor Alert Service] -->|Scheduled Check| C
-    F --> G[Email Service]
-    G --> H[SMTP Server]
-    
-    I[Dashboard Controller] --> C
-    
-    D --> J[(PostgreSQL)]
-    E --> K[Caffeine Cache]
-    
-    style A fill:#e1f5fe
-    style J fill:#f3e5f5
-    style H fill:#fff3e0
-```
-
 ## 🚀 Features
 
 - **Device Registration**: Create monitors with custom timeout settings
