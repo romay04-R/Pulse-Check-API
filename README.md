@@ -2,6 +2,61 @@
 
 A robust Dead Man's Switch API for monitoring critical infrastructure devices. Built with Spring Boot and PostgreSQL.
 
+## 🏗️ Architecture Diagram
+
+```mermaid
+sequenceDiagram
+    participant Device
+    participant Controller as Monitor Controller
+    participant Service as Monitor Service
+    participant Repository as Monitor Repository
+    participant Cache as Cache Layer
+    participant DB as PostgreSQL
+    participant Alert as Monitor Alert Service
+    participant Email as Email Service
+    participant SMTP as SMTP Server
+
+    Note over Device,SMTP: Device Registration Flow
+    Device->>Controller: POST /monitors
+    Controller->>Service: createMonitor()
+    Service->>Repository: save()
+    Repository->>DB: INSERT monitor
+    DB-->>Repository: success
+    Repository-->>Service: Monitor object
+    Service->>Cache: @CachePut
+    Cache-->>Service: cached
+    Service-->>Controller: Monitor created
+    Controller-->>Device: 201 Created
+
+    Note over Device,SMTP: Heartbeat Flow
+    Device->>Controller: POST /monitors/{id}/heartbeat
+    Controller->>Service: heartbeat(id)
+    Service->>Repository: findById()
+    Repository->>DB: SELECT monitor
+    DB-->>Repository: Monitor data
+    Repository-->>Service: Monitor object
+    Service->>Service: resetTimer()
+    Service->>Repository: save()
+    Repository->>DB: UPDATE monitor
+    DB-->>Repository: success
+    Service->>Cache: @CachePut
+    Cache-->>Service: cache updated
+    Service-->>Controller: Heartbeat received
+    Controller-->>Device: 200 OK
+
+    Note over Alert,SMTP: Alert Flow (Scheduled)
+    Alert->>Service: checkExpiredMonitors()
+    Service->>Repository: findExpiredMonitors()
+    Repository->>DB: SELECT expired monitors
+    DB-->>Repository: Expired monitors
+    Repository-->>Service: List of expired
+    Service->>Email: sendAlert(monitor)
+    Email->>SMTP: Send HTML email
+    SMTP-->>Email: Sent
+    Email-->>Service: Alert sent
+    Service-->>Alert: Alert processed
+```
+
 ## 🚀 Features
 
 - **Device Registration**: Create monitors with custom timeout settings
